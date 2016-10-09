@@ -8,6 +8,7 @@ import com.jbp.oracle.util.dao.AbstractDAO;
 import com.jbp.oracle.vo.Member;
 
 public class MemberDAOImpl extends AbstractDAO implements IMemberDAO {
+	//注释内的是原DAO实现方法，添加与区别显示OR-Mapping的作用
 	@Override
 	public boolean doCreate(Member vo) throws Exception {
 //		String sql = "insert into member (mid,name,age,phone,birthday,note) values (?,?,?,?,?,?)" ;
