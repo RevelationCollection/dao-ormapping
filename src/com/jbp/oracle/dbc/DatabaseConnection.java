@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 	private static final String DBDRIVER = "oracle.jdbc.driver.OracleDriver";
+	//填写要连接的数据库、数据库用户名和密码
 	private static final String DBURL = "jdbc:oracle:thin:@localhost:1521:xxx";
 	private static final String DBUSER = "xxx";
 	private static final String PASSWORD = "xxxx";
