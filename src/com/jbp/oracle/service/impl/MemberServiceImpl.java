@@ -18,7 +18,7 @@ public class MemberServiceImpl implements IMemberService {
 		IMemberDAO dao = DAOFactory.getInstance(MemberDAOImpl.class);
 		if(dao.findById(vo.getMid())==null){
 			if(dao.findByPhone(vo.getPhone())==null){
-				if(vo.getAge()<=0){
+				if(vo.getAge()<=0&&vo.getAge()<150){
 					vo.setAge(-1);
 				}
 				return dao.doCreate(vo);
@@ -44,9 +44,12 @@ public class MemberServiceImpl implements IMemberService {
 	@Override
 	public boolean remove(Set<String> ids) throws Exception {
 		IMemberDAO dao = DAOFactory.getInstance(MemberDAOImpl.class);
+		if(ids.size()==0||ids==null){
+			return false;
+		}
 		return dao.doRemove(ids);
 	}
-
+	
 	@Override
 	public Member get(String id) throws Exception {
 		IMemberDAO dao = DAOFactory.getInstance(MemberDAOImpl.class);
