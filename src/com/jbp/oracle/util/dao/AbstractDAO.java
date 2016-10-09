@@ -20,6 +20,11 @@ public abstract class AbstractDAO {
 	public AbstractDAO(){
 		conn = DatabaseConnection.getConnection();
 	}
+	/**
+	 * 增加数据支持类，负责调用SQL语句生成和取得SQL执行的结果
+	 * @param vo
+	 * @return
+	 */
 	public boolean createSupport(Object vo){
 		try {
 			CreateSupport  sup = new CreateSupport(vo);
@@ -32,6 +37,11 @@ public abstract class AbstractDAO {
 		}
 		return false;
 	}
+	/**
+	 * 更新数据支持类，负责调用SQL语句生成和取得SQL执行的结果
+	 * @param vo
+	 * @return
+	 */
 	public boolean updateSupport(Object vo){	
 		try {
 			UpdateSupport sup = new UpdateSupport(vo);
@@ -45,6 +55,11 @@ public abstract class AbstractDAO {
 			
 		return false;
 	}
+	/**
+	 * 删除数据支持类，负责调用SQL语句生成和取得SQL执行的结果
+	 * @param vo
+	 * @return
+	 */
 	public	<T> boolean removeSupport(Class<T> cls,Set<?> ids){
 		try {
 			RemoveSupport rs = new RemoveSupport();
@@ -60,6 +75,13 @@ public abstract class AbstractDAO {
 		
 		return false;
 	}
+	/**
+	 * 根据指定SQL语句（指定条件）查询结果
+	 * @param sql 要查询的sql语句
+	 * @param id 指定的数据
+	 * @param cls 查询数据的Vo类型
+	 * @return 返回单值Vo类对象
+	 */
 	public <T,V> T findByIdSupport(String sql,V id,Class<T> cls){
 		try {
 			FindSupport fs = new FindSupport();
@@ -71,6 +93,13 @@ public abstract class AbstractDAO {
 		}
 		return null;
 	}
+	/**
+	 * 根据指定的SQL语句查询表中的全部数据
+	 * @param sql SQL语句
+	 * @param cls 要查询的表（Vo）的类型
+	 * @param args 指定的条件
+	 * @return Vo集合
+	 */
 	public <T> List<T> findAllSupport(String sql,Class<T> cls,Object ... args){
 		try {
 			this.pstmt = this.conn.prepareStatement(sql);
@@ -86,6 +115,14 @@ public abstract class AbstractDAO {
 		return null;
 	}
 	@SuppressWarnings("unchecked")
+	/**
+	 * 统计数据查询支持类
+	 * @param sql 要查询的sql语句
+	 * @param cls 查询的Vo类对象（表）
+	 * @param args 查询的限制条件
+	 * @return
+	 * @throws Exception
+	 */
 	public <T> T getSupport(String sql,Class<T> cls,Object ...args) throws Exception {
 		this.pstmt = this.conn.prepareStatement(sql) ;
 		if (args.length > 0 ) {
