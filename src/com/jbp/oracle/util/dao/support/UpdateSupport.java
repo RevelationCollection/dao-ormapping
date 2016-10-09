@@ -14,6 +14,10 @@ public class UpdateSupport {
 		this.vo  = vo;
 	}
 	Map<Integer,String> mapTail = new HashMap<Integer,String>();
+	/**
+	 * 动态生成SQL语句
+	 * @return
+	 */
 	public String creatSQL(){
 		try{
 			int foot = 1;
@@ -37,6 +41,10 @@ public class UpdateSupport {
 		}
 		return null;
 	}
+	/**
+	 * 动态设置PreparedStatement
+	 * @return
+	 */
 	public void setPreparedStatement(PreparedStatement pstmt){
 		for (int i = 1; i <=mapTail.size(); i++) {
 			CreatePreparedStatement.set(i, vo, pstmt, mapTail.get(i));
