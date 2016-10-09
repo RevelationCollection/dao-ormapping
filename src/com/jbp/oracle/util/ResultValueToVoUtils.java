@@ -8,6 +8,12 @@ import java.util.List;
 
 public class ResultValueToVoUtils{
 	private ResultValueToVoUtils(){}
+	/**
+	 * 反射取得Vo类对象并未Vo类对象赋值
+	 * @param cls 对应vo类的类型
+	 * @param pstmt PreparedStatement对象
+	 * @return
+	 */
 	public static <T>T getVo(Class<T> cls,PreparedStatement pstmt){
 		try {
 			ResultSetMetaData rsmd = pstmt.getMetaData();
@@ -16,9 +22,6 @@ public class ResultValueToVoUtils{
 			while(rs.next()){
 				t = cls.newInstance();
 				for (int i = 1; i <= rsmd.getColumnCount() ; i++) {
-//					System.out.println(rsmd.getColumnLabel(i).getClass().getSimpleName());
-//					System.out.println(cls.getDeclaredField(rsmd.getColumnLabel(i).toLowerCase()).getType().getSimpleName());
-//					String type = rsmd.getColumnLabel(i).getClass().getSimpleName();
 					String type = cls.getDeclaredField(rsmd.getColumnLabel(i).toLowerCase()).getType().getSimpleName();
 					if("String".equals(type)){
 						BeanValueUtils.setMethod(t, rsmd.getColumnLabel(i).toLowerCase(),rs.getString(rsmd.getColumnLabel(i)) );
@@ -40,6 +43,12 @@ public class ResultValueToVoUtils{
 		
 		return null;
 	}
+	/**
+	 * 反射取得Vo类对象的集合并未Vo类对象赋值
+	 * @param cls 对应vo类的类型
+	 * @param pstmt PreparedStatement对象
+	 * @return
+	 */
 	public static<T> List<T> getVoAll(Class<T> cls,PreparedStatement pstmt){
 		try {
 			ResultSetMetaData rsmd = pstmt.getMetaData();
@@ -75,6 +84,12 @@ public class ResultValueToVoUtils{
 		
 		return null;
 	}
+	/**
+	 * 反射取得查询的结果数量（返回int或long）
+	 * @param pstmt
+	 * @return
+	 * @throws Exception
+	 */
 	public static Object converteStat(PreparedStatement pstmt) throws Exception {
 		ResultSet rs = pstmt.executeQuery() ;
 		if (rs.next()) {
