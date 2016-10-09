@@ -5,6 +5,11 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class FindSupport{
+	/**
+	 * 动态设置PreparedStatement的内容
+	 * @param pstmt
+	 * @param id
+	 */
 	public <V>void setPreparedStatemetn(PreparedStatement pstmt,V id){
 		try {
 			String type = id.getClass().getSimpleName();
@@ -18,6 +23,10 @@ public class FindSupport{
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 动态设置PreparedStatement的内容
+	 * @param pstmt
+	 */
 	public void setPreparedStatement(PreparedStatement pstmt,Object ... args){
 		try {
 			for (int i = 0; i < args.length; i++) {

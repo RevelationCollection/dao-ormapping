@@ -24,9 +24,9 @@ public class BeanValueUtils {
 	}
 	/**
 	 * 反射调用set方法（一层）
-	 * @param obj
-	 * @param methodName
-	 * @param value
+	 * @param obj 实例化对象
+	 * @param methodName 方法名称
+	 * @param value 要保存的内容
 	 */
 	public static void setMethod(Object obj,String methodName,Object value){
 		try {
