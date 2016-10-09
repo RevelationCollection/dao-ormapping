@@ -2,6 +2,11 @@ package com.jbp.oracle.util;
 
 public class StringUtils {
 	private StringUtils(){}
+	/**
+	 * 首字母大写转换
+	 * @param str
+	 * @return
+	 */
 	public static String initcap(String str){
 		if(str==null)
 			return null;
