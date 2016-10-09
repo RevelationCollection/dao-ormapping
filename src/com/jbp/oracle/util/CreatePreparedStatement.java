@@ -5,6 +5,13 @@ import java.sql.Types;
 
 public class CreatePreparedStatement {
 	private CreatePreparedStatement(){}
+	/**
+	 * PreparedStatement动态设置工具类
+	 * @param seq 要设置的索引位置
+	 * @param obj vo类的实例化对象
+	 * @param pstmt PreparedStatement实例化对象
+	 * @param name vo类的变量名称（反射取得索引设置类型和取得vo对应实际内容）
+	 */
 	public static void set(int seq,Object obj,PreparedStatement pstmt,String name){
 		try {
 			String type = obj.getClass().getDeclaredField(name).getType().getSimpleName();
