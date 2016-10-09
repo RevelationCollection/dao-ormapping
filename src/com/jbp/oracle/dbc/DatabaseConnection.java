@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 	private static final String DBDRIVER = "oracle.jdbc.driver.OracleDriver";
-	private static final String DBURL = "jdbc:oracle:thin:@localhost:1521:MLDN";
-	private static final String DBUSER = "scott";
-	private static final String PASSWORD = "tiger";
+	private static final String DBURL = "jdbc:oracle:thin:@localhost:1521:xxx";
+	private static final String DBUSER = "xxx";
+	private static final String PASSWORD = "xxxx";
 	private static ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 	private DatabaseConnection(){}
 	public static Connection rebuildConnection(){
