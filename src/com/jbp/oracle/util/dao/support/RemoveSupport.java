@@ -11,7 +11,12 @@ import com.jbp.oracle.util.PrimaryKey;
 
 public class RemoveSupport{
 	private Map<Integer,Object> mapTail = new HashMap<Integer,Object>();
-	
+	/**
+	 * 动态生成SQL语句
+	 * @param cls
+	 * @param ids
+	 * @return
+	 */
 	public <T>String createSQL(Class<T> cls,Set<?> ids){
 		int foot = 1;
 		String key = PrimaryKey.getPrmaryKey(cls.getName());
@@ -26,6 +31,11 @@ public class RemoveSupport{
 		buf.append(")");
 		return buf.toString();
 	}
+	/**
+	 * 动态设置PreparedStatement的内容
+	 * @param pstmt
+	 * @param type
+	 */
 	public void setPreparedStatement(PreparedStatement pstmt,String type){
 		try {
 			for (int i = 1; i <= mapTail.size(); i++) {
